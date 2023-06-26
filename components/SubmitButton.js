@@ -1,9 +1,20 @@
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
-export const SubmitButton = ({ text, onPress }) => {
+export const SubmitButton = ({ text, onPress, disabled }) => {
   return (
-    <TouchableOpacity style={styles.btn} onPress={onPress}>
-      <Text style={styles.textBtn}>{text}</Text>
+    <TouchableOpacity
+      style={[
+        styles.btn,
+        { backgroundColor: disabled ? "#F6F6F6" : "#FF6C00" },
+      ]}
+      onPress={onPress}
+      disabled={disabled}
+    >
+      <Text
+        style={[styles.textBtn, { color: disabled ? "#BDBDBD" : "#FFFFFF" }]}
+      >
+        {text}
+      </Text>
     </TouchableOpacity>
   );
 };

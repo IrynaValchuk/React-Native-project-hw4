@@ -11,6 +11,7 @@ import {
   Platform,
   Alert,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Input } from "../components/Input";
 import { SubmitButton } from "../components/SubmitButton";
 
@@ -21,6 +22,8 @@ export const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(true);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
+  const navigation = useNavigation();
 
   const handelSubmit = () => {
     if (email === "" || password === "") {
@@ -34,6 +37,7 @@ export const LoginScreen = () => {
     console.log(`"email:" ${email}, "password:" ${password}`);
     setEmail("");
     setPassword("");
+    navigation.navigate("Home");
   };
 
   const validateEmail = (email) => {
@@ -49,6 +53,10 @@ export const LoginScreen = () => {
     setIsShowPassword(!isShowPassword);
   };
 
+  const goToRegistration = () => {
+    navigation.navigate("Registration");
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={gStyles.container}>
@@ -59,7 +67,7 @@ export const LoginScreen = () => {
         >
           <View
             style={[
-              gStyles.formContainer,
+              gStyles.contentContainer,
               styles.formContainer,
               { height: isShowKeyboard ? 507 : 489 },
             ]}
@@ -99,7 +107,18 @@ export const LoginScreen = () => {
               </View>
             </KeyboardAvoidingView>
             <SubmitButton text="Увійти" onPress={handelSubmit} />
-            <Text style={gStyles.text}>Немає акаунту? Зареєструватися</Text>
+            <View style={gStyles.textBox}>
+              <Text style={gStyles.text}>Немає акаунту?</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  goToRegistration();
+                }}
+              >
+                <Text style={[gStyles.textLink, gStyles.text]}>
+                  Зареєструватися
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ImageBackground>
       </View>

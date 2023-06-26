@@ -1,9 +1,14 @@
-import { SafeAreaView } from "react-native";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+// import { SafeAreaView } from "react-native";
 import { useFonts } from "expo-font";
 import { RegistrationScreen } from "./screens/RegistrationScreen";
-// import { LoginScreen } from "./screens/LoginScreen";
+import { LoginScreen } from "./screens/LoginScreen";
+import { Home } from "./screens/Home";
+// import { gStyles } from "./styles/global.styles";
 
-import { gStyles } from "./styles/global.styles";
+const MainStack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,9 +22,28 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={gStyles.container}>
-      <RegistrationScreen />
-      {/* <LoginScreen /> */}
-    </SafeAreaView>
+    <NavigationContainer>
+      <MainStack.Navigator initialRouteName="Home">
+        <MainStack.Screen
+          name="Registration"
+          component={RegistrationScreen}
+          options={{ headerShown: false }}
+        />
+        <MainStack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <MainStack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
+      </MainStack.Navigator>
+      {/* <SafeAreaView style={gStyles.container}>
+        <RegistrationScreen />
+        <LoginScreen />
+      </SafeAreaView> */}
+    </NavigationContainer>
   );
 }

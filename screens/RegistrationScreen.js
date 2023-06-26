@@ -11,6 +11,7 @@ import {
   Platform,
   Alert,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Input } from "../components/Input";
 import { SubmitButton } from "../components/SubmitButton";
 
@@ -22,6 +23,8 @@ export const RegistrationScreen = () => {
   const [password, setPassword] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(true);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
+  const navigation = useNavigation();
 
   const handelSubmit = () => {
     if (login === "" || email === "" || password === "") {
@@ -38,6 +41,7 @@ export const RegistrationScreen = () => {
     setLogin("");
     setEmail("");
     setPassword("");
+    navigation.navigate("Home");
   };
 
   const validateEmail = (email) => {
@@ -53,6 +57,10 @@ export const RegistrationScreen = () => {
     setIsShowPassword(!isShowPassword);
   };
 
+  const goToLogin = () => {
+    navigation.navigate("Login");
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={gStyles.container}>
@@ -63,7 +71,7 @@ export const RegistrationScreen = () => {
         >
           <View
             style={[
-              gStyles.formContainer,
+              gStyles.contentContainer,
               { height: isShowKeyboard ? 629 : 549 },
             ]}
           >
@@ -115,7 +123,16 @@ export const RegistrationScreen = () => {
               </View>
             </KeyboardAvoidingView>
             <SubmitButton text="Зареєстуватися" onPress={handelSubmit} />
-            <Text style={gStyles.text}>Вже є акаунт? Увійти</Text>
+            <View style={gStyles.textBox}>
+              <Text style={gStyles.text}>Вже є акаунт?</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  goToLogin();
+                }}
+              >
+                <Text style={[gStyles.textLink, gStyles.text]}>Увійти</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ImageBackground>
       </View>

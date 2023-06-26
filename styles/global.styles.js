@@ -17,7 +17,7 @@ export const gStyles = StyleSheet.create({
     letterSpacing: 0.01,
     color: "#212121",
   },
-  formContainer: {
+  contentContainer: {
     position: "relative",
     alignItems: "center",
     paddingTop: 92,
@@ -50,9 +50,16 @@ export const gStyles = StyleSheet.create({
     top: 16,
     right: 16,
   },
+  textBox: {
+    flexDirection: "row",
+  },
   text: {
     fontSize: 16,
     lineHeight: 19,
     color: "#1B4371",
+  },
+  textLink: {
+    marginLeft: 5,
+    textDecorationLine: "underline",
   },
 });
