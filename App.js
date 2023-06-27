@@ -1,12 +1,10 @@
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-// import { SafeAreaView } from "react-native";
 import { useFonts } from "expo-font";
 import { RegistrationScreen } from "./screens/RegistrationScreen";
 import { LoginScreen } from "./screens/LoginScreen";
 import { Home } from "./screens/Home";
-// import { gStyles } from "./styles/global.styles";
 
 const MainStack = createStackNavigator();
 
@@ -23,7 +21,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <MainStack.Navigator initialRouteName="Home">
+      <MainStack.Navigator initialRouteName="Login">
         <MainStack.Screen
           name="Registration"
           component={RegistrationScreen}
@@ -40,10 +38,6 @@ export default function App() {
           options={{ headerShown: false }}
         />
       </MainStack.Navigator>
-      {/* <SafeAreaView style={gStyles.container}>
-        <RegistrationScreen />
-        <LoginScreen />
-      </SafeAreaView> */}
     </NavigationContainer>
   );
 }
